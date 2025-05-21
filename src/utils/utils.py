@@ -7,7 +7,7 @@ class HelperFuncs:
     @staticmethod
     def url_join(*args: str) -> str:
         slash = "/"
-        return "/".join((arg.strip(slash) for arg in args))
+        return "/".join(arg.strip(slash) for arg in args)
 
     @staticmethod
     def load_json(fp: Path) -> Any:

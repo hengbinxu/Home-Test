@@ -1,6 +1,7 @@
 import logging
+from collections.abc import Generator
 from contextlib import contextmanager
-from typing import Any, Generator, override
+from typing import Any, override
 
 from selenium.common.exceptions import WebDriverException
 
