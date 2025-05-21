@@ -1,0 +1,41 @@
+{
+  "driver": {
+    "browser": "chrome",
+    "remote_url": null,
+    "driver_path": null,
+    "browser_options": [
+      "--disable-gpu",
+      "--no-sandbox",
+      "--start-maximized",
+      "--enable-logging",
+      "--v=1"
+    ],
+    "capabilities": {
+      "goog:loggingPrefs": {
+        "performance": "ALL",
+        "browser": "ALL",
+        "client": "ALL",
+        "server": "ALL",
+        "driver": "ALL"
+      },
+      "timeouts": {
+        "implicit": 10000,
+        "pageLoad": 30000
+      }
+    },
+    "experimental_options": {},
+    "extension_paths": [],
+    "webdriver_kwargs": {},
+    "page_load_wait_time": 30,
+    "implicitly_wait": 15
+  },
+  "log": {
+    "screenshot_on": true
+  },
+  "viewport": {
+    "maximize": true,
+    "width": 1440,
+    "height": 900,
+    "orientation": "portrait"
+  }
+}

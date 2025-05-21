@@ -1,0 +1,23 @@
+{
+  "driver": {
+    "browser": "firefox",
+    "remote_url": null,
+    "driver_path": null,
+    "browser_options": [],
+    "capabilities": {},
+    "experimental_options": {},
+    "extension_paths": [],
+    "webdriver_kwargs": {},
+    "page_load_wait_time": 30,
+    "implicitly_wait": 15
+  },
+  "log": {
+    "screenshot_on": true
+  },
+  "viewport": {
+    "maximize": true,
+    "width": 1440,
+    "height": 900,
+    "orientation": "portrait"
+  }
+}
