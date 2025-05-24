@@ -23,11 +23,11 @@
         "pageLoad": 30000
       }
     },
-    "experimental_options": {},
+    "experimental_options": { "mobileEmulation": { "deviceName": "iPhone X" } },
     "extension_paths": [],
     "webdriver_kwargs": {},
-    "page_load_wait_time": 30,
-    "implicitly_wait": 15
+    "page_load_wait_time": 5,
+    "implicitly_wait": 3
   },
   "log": {
     "screenshot_on": true
