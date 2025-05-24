@@ -37,7 +37,7 @@ class TestTwitchPage:
                 twitch_page.scroll_by(0, 300)
                 time.sleep(sleep_time)
 
-            for streamer_element in twitch_page.streamer_list_elememts[::-1]:
+            for _, streamer_element in twitch_page.streamer_list_elememts[::-1]:
                 try:
                     streamer_element.click()
                     break

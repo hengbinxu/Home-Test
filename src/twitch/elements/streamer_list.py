@@ -38,7 +38,7 @@ class StreamerDetail(BaseModel):
             return False
 
 
-class StreamerListElements(BaseElement[list[WebElement]]):
+class StreamerListElements(BaseElement[list[tuple[StreamerDetail, WebElement]]]):
     def __init__(
         self,
         only_live: bool = False,
@@ -122,9 +122,11 @@ class StreamerListElements(BaseElement[list[WebElement]]):
         else:
             return StreamerDetail(is_live=False, channel_id=channel_id)
 
-    def __get__(self, obj: BasePage, owner: Any) -> list[WebElement]:
-        streamer_elements = super().__get__(obj, owner)
-        avaiable_streamer_elements: list[WebElement] = []
+    def __get__(
+        self, obj: BasePage, owner: Any
+    ) -> list[tuple[StreamerDetail, WebElement]]:
+        streamer_elements: list[WebElement] = super().__get__(obj, owner)  # type: ignore
+        avaiable_streamer_elements: list[tuple[StreamerDetail, WebElement]] = []
         for element in streamer_elements:
             try:
                 # Wait for the element to be clickable
@@ -149,7 +151,7 @@ class StreamerListElements(BaseElement[list[WebElement]]):
                     continue
 
             if self.only_live and streamer_detail.is_live:
-                avaiable_streamer_elements.append(element)
+                avaiable_streamer_elements.append((streamer_detail, element))
             else:
-                avaiable_streamer_elements.append(element)
+                avaiable_streamer_elements.append((streamer_detail, element))
         return avaiable_streamer_elements
