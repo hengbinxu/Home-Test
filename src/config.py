@@ -10,6 +10,7 @@ from src.constants import ENV_DIR, ROOT_DIR, Envs, LogLevel
 class Settings(BaseSettings):
     ENV: Envs = Field(default=Envs.TEST)
     LOG_LEVEL: LogLevel = Field(default=LogLevel.INFO)
+    TWITCH_HOST: str = Field(default="http://localhost")
 
     model_config = SettingsConfigDict(
         env_file=ENV_DIR / ".env",
