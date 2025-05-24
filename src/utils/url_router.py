@@ -42,7 +42,7 @@ class UrlRouter:
         try:
             api_endpoint = self.ROUTER[api_name]
         except KeyError:
-            print(
+            log.error(
                 "The {api_name} doesn't exist in self.ROUTER.\n"
                 f"self.ROUTER: {self.ROUTER}"
             )

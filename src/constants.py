@@ -5,6 +5,8 @@ ROOT_DIR = Path(__file__).parent.parent
 
 ENV_DIR = ROOT_DIR / "envs"
 DRIVER_CONFIG_DIR = ROOT_DIR / "driver_config"
+SCREENSHOT_DIR = ROOT_DIR / "screenshots"
+SCREENSHOT_DIR.mkdir(exist_ok=True)
 
 
 class Envs(StrEnum):
@@ -26,3 +28,9 @@ class Browser(StrEnum):
     EDGE = "edge"
     SAFARI = "safari"
     FIREFOX = "firefox"
+
+
+class DocumentReadyState(StrEnum):
+    LOADING = "loading"
+    INTERATIVE = "interative"
+    COMPLETE = "complete"
