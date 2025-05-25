@@ -19,6 +19,7 @@ class WebDriverGenerator:
     def init_webdriver(self) -> WebDriver:
         driver_factory = DriverFactory(
             browser=self.webdriver_config.driver.browser,
+            remote_url=self.webdriver_config.driver.remote_url,
             driver_path=self.webdriver_config.driver.driver_path,
             capabilities=self.webdriver_config.driver.capabilities,
             browser_options=self.webdriver_config.driver.browser_options,
