@@ -21,6 +21,7 @@ TEST_COMPANY_NAME_EXCHANGE = [
 TEST_COMPANY_SYMBOL = ["AAPL", "TSM", "NVDA", "META", "GOOG"]
 
 
+@pytest.mark.api_test
 class TestFinHubApiClient:
     @pytest.mark.parametrize(
         "company_name,exchange",

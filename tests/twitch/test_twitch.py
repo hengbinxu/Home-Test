@@ -1,6 +1,7 @@
 import logging
 import time
 
+import pytest
 from selenium.common.exceptions import ElementClickInterceptedException
 
 from src.twitch.twitch import TwitchPage
@@ -10,6 +11,7 @@ from src.webdriver.driver_factory import WebDriver
 log = logging.getLogger()
 
 
+@pytest.mark.web_test
 class TestTwitchPage:
     def test_visit_home_page(self, webdriver: WebDriver) -> None:
         twitch_page = TwitchPage(webdriver)
