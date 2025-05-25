@@ -47,7 +47,7 @@ class UrlRouter:
                 f"self.ROUTER: {self.ROUTER}"
             )
         if api_endpoint:
-            api_url = HelperFuncs.url_join(self.base_url, api_name)
+            api_url = HelperFuncs.url_join(self.base_url, api_endpoint)
         else:
             api_url = self.base_url
         return api_url

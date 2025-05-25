@@ -10,7 +10,10 @@ from src.constants import ENV_DIR, ROOT_DIR, Envs, LogLevel
 class Settings(BaseSettings):
     ENV: Envs = Field(default=Envs.TEST)
     LOG_LEVEL: LogLevel = Field(default=LogLevel.INFO)
+    FINN_HUB_API_KEY: str
+
     TWITCH_HOST: str = Field(default="http://localhost")
+    FINN_HUB_HOST: str
 
     model_config = SettingsConfigDict(
         env_file=ENV_DIR / ".env",
@@ -21,7 +24,7 @@ class Settings(BaseSettings):
     )
 
 
-settings = Settings()
+settings = Settings()  # type: ignore
 
 
 def logging_config() -> None:

@@ -27,7 +27,7 @@ class BaseApiClient:
         self.client = Client(
             event_hooks={
                 "request": [self._log_request],
-                "response": [self._raise_error],
+                # "response": [self._raise_error],
             }
         )
 
@@ -39,6 +39,12 @@ class BaseApiClient:
 
     def _raise_error(self, response: Response) -> None:
         response.raise_for_status()
+
+    def get_api_url(self, api_name: str) -> str:
+        return self.url_router.get_api_url(api_name)
+
+    def get_formatter_api_url(self, api_name: str, **kwargs: Any) -> str:
+        return self.url_router.get_formatter_api_url(api_name, **kwargs)
 
     def request_json(
         self,
