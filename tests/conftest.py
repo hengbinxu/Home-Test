@@ -5,6 +5,7 @@ from typing import Any, cast
 import pytest
 
 from src.constants import Browser
+from src.finnhub.finnhub_api_client import FinnHubApiClient
 from src.utils.utils import HelperFuncs
 from src.webdriver.driver_factory import WebDriver
 from src.webdriver.driver_generator import WebDriverGenerator
@@ -56,3 +57,8 @@ def webdriver(request: pytest.FixtureRequest) -> Generator[WebDriver, Any, None]
         raise e
     finally:
         webdriver_generator.quit()
+
+
+@pytest.fixture()
+def finhun_api_client() -> FinnHubApiClient:
+    return FinnHubApiClient()
