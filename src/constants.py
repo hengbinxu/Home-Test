@@ -11,6 +11,9 @@ SCREENSHOT_DIR.mkdir(exist_ok=True)
 ERR_LOGS_DIR = ROOT_DIR / "error_logs"
 ERR_LOGS_DIR.mkdir(exist_ok=True)
 
+HTML_REPORTS_DIR = ROOT_DIR / "html_reports"
+HTML_REPORTS_DIR.mkdir(exist_ok=True)
+
 
 class Envs(StrEnum):
     DEV = "dev"

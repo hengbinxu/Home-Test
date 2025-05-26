@@ -30,21 +30,6 @@ class TwitchPage(BasePage):
         self.warning_msg_element = WarningMessageElement(obj=self)
         self._video_element = VideoElement(obj=self)
 
-    # @classmethod
-    # def adjust_streamer_list_elements_init_args(
-    #     cls,
-    #     on_live: bool = True,
-    #     game_name: str | None = None,
-    #     raise_clickable_timeout_exc: bool = False,
-    #     timeout: float = 3,
-    # ) -> None:
-    #     cls.streamer_list_elememts = StreamerListElements(
-    #         only_live=on_live,
-    #         game_name=game_name,
-    #         raise_clickable_timeout_exc=raise_clickable_timeout_exc,
-    #         timeout=timeout,
-    #     )
-
     def search_by_keyword(self, keyword: str) -> None:
         search_element = self.search_element.find()
         search_element.click()
