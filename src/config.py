@@ -4,7 +4,7 @@ from logging.config import dictConfig
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from src.constants import ENV_DIR, ROOT_DIR, Envs, LogLevel
+from src.constants import ENV_DIR, ERR_LOGS_DIR, Envs, LogLevel
 
 
 class Settings(BaseSettings):
@@ -49,7 +49,7 @@ def logging_config() -> None:
                 "class": "logging.handlers.RotatingFileHandler",
                 "level": logging.ERROR,
                 "formatter": "console",
-                "filename": ROOT_DIR / "error_logs" / "app.log",
+                "filename": ERR_LOGS_DIR / "app.log",
                 "maxBytes": 2**23,  # 8MB
                 "backupCount": 5,  # Keep 5 backup files
                 "encoding": "utf-8",
