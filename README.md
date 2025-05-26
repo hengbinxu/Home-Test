@@ -111,7 +111,7 @@ There are two ways that you can execute the test.
     ## Only execute web test
     # pytest -vv -m web_test tests --html="./html_reports/$(date '+%Y-%m-%d-%H-%M-%S').html" --self-contained-html
 
-    ## Only execute the api test
+    ## Only execute api test
     # pytest -vv -m api_test tests --html="./html_reports/$(date '+%Y-%m-%d-%H-%M-%S').html" --self-contained-html
     ```
 
@@ -174,7 +174,7 @@ There are two ways that you can execute the test.
     ## Only execute web test
     # pytest -vv -m web_test tests --html="./html_reports/$(date '+%Y-%m-%d-%H-%M-%S').html" --self-contained-html
 
-    ## Only execute the api test
+    ## Only execute api test
     # pytest -vv -m api_test tests --html="./html_reports/$(date '+%Y-%m-%d-%H-%M-%S').html" --self-contained-html
     ```
 
