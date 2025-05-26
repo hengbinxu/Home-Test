@@ -1,4 +1,4 @@
-from typing import Any
+from typing import override
 
 from pydantic import Field, computed_field
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -41,35 +41,16 @@ class StreamerDetail(BaseModel):
 class StreamerListElements(BaseElement[list[tuple[StreamerDetail, WebElement]]]):
     def __init__(
         self,
-        only_live: bool = False,
-        game_name: str | None = None,
-        raise_clickable_timeout_exc: bool = False,
+        obj: BasePage,
         timeout: float = 3,
     ) -> None:
-        """
-        Get Twitch Streamer List
-
-        Args:
-            only_live (bool, optional):
-                Only live streamers are included; recommended channels are not.
-                Defaults to False.
-
-            game_name (str | None, optional):
-                Only get streamers whose game name matches the specified one.
-                Defaults to None.
-
-            raise_clickable_timeout_exc (bool, optional): Defaults to False.
-            timeout (float, optional): Defaults to 5.
-        """
         super().__init__(
+            obj=obj,
             by=By.XPATH,
             value="//*[@id='page-main-content-wrapper']/div/div/div[1]/div/div/div",
             ec_method=EC.visibility_of_all_elements_located,  # type: ignore
             timeout=timeout,
         )
-        self.only_live = only_live
-        self.raise_clickable_timeout_exc = raise_clickable_timeout_exc
-        self.game_name = game_name
 
     def __extract_streamer_channel_id(self, streamer_element: WebElement) -> str:
         channel_id_element = streamer_element.find_element(by=By.TAG_NAME, value="h2")
@@ -122,35 +103,56 @@ class StreamerListElements(BaseElement[list[tuple[StreamerDetail, WebElement]]])
         else:
             return StreamerDetail(is_live=False, channel_id=channel_id)
 
-    def __get__(
-        self, obj: BasePage, owner: Any
+    @override
+    def find(
+        self,
+        only_live: bool = True,
+        game_name: str | None = None,
+        raise_clickable_timeout_exc: bool = False,
     ) -> list[tuple[StreamerDetail, WebElement]]:
-        streamer_elements: list[WebElement] = super().__get__(obj, owner)  # type: ignore
+        """
+        Find the elements
+
+        Args:
+            only_live (bool, optional):
+                Only live streamers are included; recommended channels are not.
+                Defaults to False.
+
+            game_name (str | None, optional):
+                Only get streamers whose game name matches the specified one.
+                Defaults to None.
+
+            raise_clickable_timeout_exc (bool, optional): Defaults to False.
+
+        Returns:
+            list[tuple[StreamerDetail, WebElement]]
+        """
+        streamer_elements: list[WebElement] = super().find()  # type: ignore
         avaiable_streamer_elements: list[tuple[StreamerDetail, WebElement]] = []
         for element in streamer_elements:
             try:
                 # Wait for the element to be clickable
-                obj.wait_until(
+                self.obj.wait_until(
                     method=EC.element_to_be_clickable,  # type: ignore
                     method_kwargs={"mark": element},
                     timeout=self.timeout,
                 )
             except TimeoutException as e:
-                obj.log.error(
+                self.obj.log.error(
                     f"text: {element.text} is not clickable, timeout: {self.timeout}"
                 )
-                if self.raise_clickable_timeout_exc:
+                if raise_clickable_timeout_exc:
                     raise e
                 else:
                     continue
 
             streamer_detail = self.__extract_streamer_info(element)
             # It can do more filter according test scenario.
-            if self.game_name is not None:
-                if streamer_detail.is_the_same_game_name(self.game_name) is False:
+            if game_name is not None:
+                if streamer_detail.is_the_same_game_name(game_name) is False:
                     continue
 
-            if self.only_live and streamer_detail.is_live:
+            if only_live and streamer_detail.is_live:
                 avaiable_streamer_elements.append((streamer_detail, element))
             else:
                 avaiable_streamer_elements.append((streamer_detail, element))
