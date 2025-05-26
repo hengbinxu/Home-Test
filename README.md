@@ -49,7 +49,7 @@
   - [driver_config](./driver_config/) - The webdriver configuration, which includes different browser types.
   - [envs](./envs/) - Set the enviroment variables
   - [requirements](./requirements/) - Project dependencies, which includes development dependencies and deployment dependiencies.
-  - [html_reports] - Save the test reports
+  - [html_reports](./html_reports/) - Save the test reports
   - [pytest.ini](./pytest.ini) - Pytest settings
 
 ## How to execute the test? 💻
@@ -186,29 +186,35 @@ There are two ways that you can execute the test.
   - The test flow can refer to [`test_twitch.py`](./tests/twitch/test_twitch.py). It handles the two situations while clicking the streamer element.
     - Recommended Twitch channel: It isn't live, no video is available and it has a chance automatically added to the streamer list once Selenium locates the target elements.
 
-    <div align="center">
-        <img src=./image/recommanded_channel.png alt="Description" width="300" height="500"/>
-    </div>
+    <img src=./image/recommanded_channel.png alt="Description" width="300" height="500"/>
 
     - The pop-up warning message element overlay the video element.
 
-        <div align="center">
-            <img src=./image/warning_msg_popup.png alt="Description" width="300" height="500"/>
-        </div>
+    <img src=./image/warning_msg_popup.png alt="Description" width="300" height="500"/>
 
   - Both of the above situations occur after clicking the streamer element, so I created two steps to handle it.
     - Check the element whether it is a video element(wait until video time large than 0 and not in paused). If it is, take a screenshot and stop while loop. Otherwise, processed to the next step.
     - Locate the pop-up element. If found, click `start watching` button then use step1 again to check whether the element is video or not. If yes, take a screenshot and stop while loop. Otherwise, back to the streamer list page and scroll down again, and click the streamer.
 
-- API Testing
+- [Finnhub](https://finnhub.io/docs/api/) API Testing
 
-| Method | Path                   | API NAME        | Test Cases                                                                                                                                                                                                                                  |
-| ------ | ---------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /api/v1/search         | symbol_lookup   | Steps: (1). Use the symbol_lookup API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                        |
-| GET    | /api/v1/stock/profile2 | company_profile | (1). Use the company_profile API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                             |
-| GET    | /api/v1/company-news   | quote           | Steps: (1). Use the quote API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                                |
-| GET    | /api/v1/quote          | company_news    | Steps: (1). Use the company_news API with different arguments to get status code and response (2). Check the status code and its response structure (3). Check the datetime of the response whether it is between the from_date and to_date |
+| Method | Path            | API NAME               | Test Cases                                                                                                                                                                                                                                  |
+| ------ | --------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | symbol_lookup   | /api/v1/search         | Steps: (1). Use the symbol_lookup API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                        |
+| GET    | company_profile | /api/v1/stock/profile2 | (1). Use the company_profile API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                             |
+| GET    | quote           | /api/v1/quote          | Steps: (1). Use the quote API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                                |
+| GET    | company_news    | /api/v1/company-news   | Steps: (1). Use the company_news API with different arguments to get status code and response (2). Check the status code and its response structure (3). Check the datetime of the response whether it is between the from_date and to_date |
 
 - Validation
   - All of the API validate their status codes, response data format and date types. Each API must conform to the specification, which servers as the foundation.
   - The datetime filter function on Company News API. If it fails, the API may return data that doesn't match user's expections.
+
+- Result & Reports
+
+  - ScreenShot
+
+    <img src=./image/2025-05-26-10-18-36.png alt="screenshot" width="300" height="500"/>
+
+  - Reports: [Example html reports](./html_reports/2025-05-26-18-18-02.html)
+
+    <img src=./image/html-reprots.png alt="html-reports" width="900" height="800"/>
