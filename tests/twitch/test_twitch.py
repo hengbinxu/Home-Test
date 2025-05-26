@@ -52,14 +52,32 @@ class TestTwitchPage:
                 twitch_page.save_screenshot()
                 stop_while = True
             except Exception:
-                log.error(
-                    "A recommended Twitch channel was clicked, "
+                log.warning(
+                    "Can't load the video element. There are two situation\n"
+                    "(1). A recommended Twitch channel was clicked, "
                     "but since it isn't live, no video is available. "
                     "It is automatically added to the streamer "
-                    "list once Selenium locates the target elements."
+                    "list once Selenium locates the target elements.\n"
+                    "(2). The channel appear the warning message element overlay the "
+                    "video element. It must click start watching button first."
                 )
-                # Back to the previous page and locates the target elements again
-                twitch_page.back()
+
+            if stop_while is False:
+                try:
+                    twitch_page.warning_msg_element.find()
+                    twitch_page.warning_msg_element.click_start_watching_button()
+                    twitch_page.get_loaded_video_element()
+                    twitch_page.save_screenshot()
+                    stop_while = True
+                except Exception:
+                    log.warning(
+                        "It's not a warning message element overlay situation. "
+                        "Go back to the streamer list page and click streamer elemet "
+                        "test again."
+                    )
 
             if stop_while:
                 break
+            else:
+                # Back to the previous page and locates the target elements again
+                twitch_page.back()
