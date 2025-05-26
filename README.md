@@ -198,16 +198,17 @@ There are two ways that you can execute the test.
 
 - [Finnhub](https://finnhub.io/docs/api/) API Testing
 
-| Method | Path            | API NAME               | Test Cases                                                                                                                                                                                                                                  |
-| ------ | --------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | symbol_lookup   | /api/v1/search         | Steps: (1). Use the symbol_lookup API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                        |
-| GET    | company_profile | /api/v1/stock/profile2 | (1). Use the company_profile API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                             |
-| GET    | quote           | /api/v1/quote          | Steps: (1). Use the quote API with different arguments to get status code and response (2). Check the status code and its response structure                                                                                                |
-| GET    | company_news    | /api/v1/company-news   | Steps: (1). Use the company_news API with different arguments to get status code and response (2). Check the status code and its response structure (3). Check the datetime of the response whether it is between the from_date and to_date |
+| Method | Path            | API NAME               | Test Cases                                                                                                                                                                                                                                            |
+| ------ | --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | symbol_lookup   | /api/v1/search         | Steps: (1). Use the symbol_lookup API with different arguments and token to get status code and response (2). Check the status code and its response structure                                                                                        |
+| GET    | company_profile | /api/v1/stock/profile2 | (1). Use the company_profile API with different arguments and token to get status code and response (2). Check the status code and its response structure                                                                                             |
+| GET    | quote           | /api/v1/quote          | Steps: (1). Use the quote API with different arguments and token to get status code and response (2). Check the status code and its response structure                                                                                                |
+| GET    | company_news    | /api/v1/company-news   | Steps: (1). Use the company_news API with different arguments and token to get status code and response (2). Check the status code and its response structure (3). Check the datetime of the response whether it is between the from_date and to_date |
 
 - Validation
   - All of the API validate their status codes, response data format and date types. Each API must conform to the specification, which servers as the foundation.
   - The datetime filter function on Company News API. If it fails, the API may return data that doesn't match user's expections.
+  - API key authorized validation. To ensure API security and reliablity.
 
 - Result & Reports
 

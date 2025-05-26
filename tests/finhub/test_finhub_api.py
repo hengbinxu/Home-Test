@@ -41,7 +41,7 @@ class TestFinHubApiClient:
         Test response and status code of the get_symbol_lookup API.
 
         TestFlow:
-            (1). Use the get_symbol_lookup API with different arguments to
+            (1). Use the get_symbol_lookup API with different arguments and token to
             get status code and response
             (2). Check the status code and its response structure
         """
@@ -75,7 +75,7 @@ class TestFinHubApiClient:
         Test response and status code of the get_company_profile API.
 
         TestFlow:
-            (1). Use the get_company_profile API with different arguments to
+            (1). Use the get_company_profile API with different arguments and token to
             get status code and response
             (2). Check the status code and its response structure
         """
@@ -109,7 +109,7 @@ class TestFinHubApiClient:
         Test response and status code of the get_quote API.
 
         TestFlow:
-            (1). Use the get_quote API with different arguments to
+            (1). Use the get_quote API with different arguments and token to
             get status code and response
             (2). Check the status code and its response structure
         """
@@ -146,7 +146,7 @@ class TestFinHubApiClient:
         Test response and status code of the get_company_news API.
 
         TestFlow:
-            (1). Use the get_company_news API with different arguments to
+            (1). Use the get_company_news API with different arguments and token to
             get status code and response
             (2). Check the status code and its response structure
             (3). Check the datetime of the response whether it is between the
