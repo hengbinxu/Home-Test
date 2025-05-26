@@ -8,8 +8,8 @@
     "experimental_options": {},
     "extension_paths": [],
     "webdriver_kwargs": {},
-    "page_load_wait_time": 5,
-    "implicitly_wait": 3
+    "page_load_wait_time": 10,
+    "implicitly_wait": 5
   },
   "log": {
     "screenshot_on": true

@@ -1,14 +1,13 @@
 {
   "driver": {
     "browser": "chrome",
-    "remote_url": null,
+    "remote_url": "http://127.0.0.1:4444",
     "driver_path": null,
     "browser_options": [
       "--disable-gpu",
       "--no-sandbox",
       "--start-maximized",
-      "--enable-logging",
-      "--v=1"
+      "--enable-logging"
     ],
     "capabilities": {
       "goog:loggingPrefs": {
@@ -17,17 +16,13 @@
         "client": "ALL",
         "server": "ALL",
         "driver": "ALL"
-      },
-      "timeouts": {
-        "implicit": 10000,
-        "pageLoad": 30000
       }
     },
     "experimental_options": { "mobileEmulation": { "deviceName": "iPhone X" } },
     "extension_paths": [],
     "webdriver_kwargs": {},
-    "page_load_wait_time": 5,
-    "implicitly_wait": 3
+    "page_load_wait_time": 10,
+    "implicitly_wait": 5
   },
   "log": {
     "screenshot_on": true

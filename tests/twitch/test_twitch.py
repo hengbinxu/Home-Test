@@ -21,7 +21,7 @@ class TestTwitchPage:
         )
 
     def test_search_and_click_random_streamer(self, webdriver: WebDriver) -> None:
-        sleep_time = 2  # It's now a good way to handle loading page
+        sleep_time = 2  # It's not a good way to handle loading page
         keyword = "StarCraft"
         twitch_page = TwitchPage(webdriver)
         twitch_page.visit_page("directory")

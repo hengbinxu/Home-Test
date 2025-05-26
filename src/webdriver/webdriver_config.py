@@ -20,11 +20,7 @@ DEFAULT_CHROME_CAPABILITIES = {
         "client": "ALL",
         "server": "ALL",
         "driver": "ALL",
-    },
-    "timeouts": {
-        "implicit": 10 * 1000,
-        "pageLoad": 30 * 1000,
-    },
+    }
 }
 
 
@@ -37,10 +33,10 @@ class DriverConfig(BaseModel):
     experimental_options: dict[str, Any] = Field(default_factory=dict)
     extension_paths: list[str] = Field(default_factory=list)
     webdriver_kwargs: dict[str, Any] = Field(default_factory=dict)
-    page_load_wait_time: float = 0
-    implicitly_wait: float = 10
+    page_load_wait_time: float = 10
+    implicitly_wait: float = 5
 
-    @computed_field
+    @computed_field  # type: ignore
     @property
     def capabilities(self) -> dict[str, Any]:
         if self.capabilities_:
@@ -51,7 +47,7 @@ class DriverConfig(BaseModel):
             else:
                 return self.capabilities_
 
-    @computed_field
+    @computed_field  # type: ignore
     @property
     def browser_options(self) -> list[str]:
         if self.browser_options_:
